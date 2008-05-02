@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title><%= @page_title %> | mtdweb</title>
+        <link rel="stylesheet" href="/stylesheets/style.css"/>
+    </head>
+    <body>
+        <div id="banner">
+            <span id="logo">mtdweb</span>
+
+<% if logged_in? %>
+            <div id="account-info">
+                <a href='/session/destroy'>Log Out</a>
+           </div> 
+<% end %>
+
+        </div>
+
+       <%= yield %>
+    </body>
+</html>
+
