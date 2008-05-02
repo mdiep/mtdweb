@@ -3,5 +3,26 @@
     <div id='name'>
         <h1><%= @contact.full_name %></h1>
     </div>
+
+    <div id='add-note'>
+    <% form_for :note, :url => notes_path do |f| -%>
+        <%= f.hidden_field :contact_id, :value => @contact.id %>
+        <%= f.text_area :text, 'cols' => 60, 'rows' => 6 %>
+        <div id='note-buttons'>
+            <%= submit_tag 'Add Note' %>
+        </div>
+    <% end %>
+    </div>
+
+    <ul id='contact-history'>
+
+<% @contact.notes.sort{ |a,b| b.timestamp <=> a.timestamp }.each do |note| %>
+        <li>
+            <div class='header'><span class='date'><%= note.timestamp %></span></div>
+            <p><%= note.text %></p>
+        </li>
+<% end %>
+
+    </ul>
 </div>
 

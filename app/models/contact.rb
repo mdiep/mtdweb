@@ -1,6 +1,7 @@
 
 class Contact < ActiveRecord::Base
     belongs_to :user
+    has_many   :notes
 
     def full_name
         if spouses_name.nil?
