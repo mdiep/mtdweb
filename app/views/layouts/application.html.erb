@@ -9,6 +9,7 @@
 
 <% if logged_in? %>
             <div id="account-info">
+                <%= current_user.login %>
                 <a href='/session/destroy'>Log Out</a>
            </div> 
 <% end %>
