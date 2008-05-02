@@ -18,7 +18,7 @@ class ContactsController < ApplicationController
     
     def create
         @contact = Contact.new(params[:contact])
-        @contact.user_id = current_user.id
+        @contact.user = current_user
         if @contact.spouses_name == ''
             @contact.spouses_name = nil
         end
