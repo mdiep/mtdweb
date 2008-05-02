@@ -58,6 +58,14 @@ table td, table th
 	padding: 0.25em;
 }
 
+p input,
+p textarea
+{
+	display: block;
+	margin-bottom: 1em;
+	margin-right:  2em;
+}
+
 /* banner */
 
 div#banner

@@ -3,9 +3,11 @@
     <h2>New Contact</h2>
 
     <% form_for :contact, :url => contacts_path do |f| -%>
-        <p>First Name:    <%= f.text_field :first_name %>  </p>
-        <p>Spouse's Name: <%= f.text_field :spouses_name %></p>
-        <p>Last Name:     <%= f.text_field :last_name %>   </p>
+        <p style='float: left'>First Name    <%= f.text_field :first_name %>  </p>
+        <p>Last Name     <%= f.text_field :last_name %>   </p>
+        <p>Spouse's Name <%= f.text_field :spouses_name %></p>
+
+        <p>Details <%= f.text_area :details, 'cols' => 62, 'rows' => 8 %></p>
 
         <p><%= submit_tag 'Add Contact' %></p>
     <% end -%>
