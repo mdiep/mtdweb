@@ -4,7 +4,7 @@ class Contact < ActiveRecord::Base
         if spouses_name.nil?
             return first_name + ' ' + last_name
         else
-            return first_name + ' and ' + spouses_name + ' ' + lastname
+            return first_name + ' and ' + spouses_name + ' ' + last_name
         end
     end
 end

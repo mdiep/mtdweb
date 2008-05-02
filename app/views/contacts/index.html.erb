@@ -1,0 +1,16 @@
+
+<div id='content'>
+
+    <h2>Contacts</h2>
+
+    <table>
+        <tr> <th>Name</th> </tr>
+
+<% @contacts.each do |c| %>
+        <tr> <td><%= link_to c.full_name, contact_url(c) %></td> </tr>
+<% end %>
+
+    </table>
+
+</div>
+
