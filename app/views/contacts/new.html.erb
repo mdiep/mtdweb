@@ -1,0 +1,14 @@
+
+<div id='content'>
+    <h2>New Contact</h2>
+
+    <% form_for :contact, :url => contacts_path do |f| -%>
+        <p>First Name:    <%= f.text_field :first_name %>  </p>
+        <p>Spouse's Name: <%= f.text_field :spouses_name %></p>
+        <p>Last Name:     <%= f.text_field :last_name %>   </p>
+
+        <p><%= submit_tag 'Add Contact' %></p>
+    <% end -%>
+
+</div>
+
