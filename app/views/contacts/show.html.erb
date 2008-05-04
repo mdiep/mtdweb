@@ -1,5 +1,6 @@
 
 <div id='column'>
+    <%= link_to "Edit #{@contact.first_names}", { :action => 'edit', :id => @contact.id }, { :class => 'add-link' } %>
     <div id='details'>
         <h3>Details</h3>
         <p><%= @contact.details %></p>

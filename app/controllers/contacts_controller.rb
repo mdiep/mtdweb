@@ -26,8 +26,25 @@ class ContactsController < ApplicationController
         
         if not @contact.errors.empty?
             render :action => 'new'
-        else
+       else
             redirect_to :action => 'show', :id => @contact.id
+        end
+    end
+
+    def edit
+        @contact    = Contact.find(params[:id])
+        @page_title = @contact.full_name
+    end
+
+    def update
+        @contact = Contact.find(params[:id])
+        if params[:contact][:spouses_name] == ''
+            params[:contact][:spouses_name] = nil
+        end
+        if @contact.update_attributes(params[:contact])
+            redirect_to @contact
+        else
+            render :action => 'edit'
         end
     end
 end

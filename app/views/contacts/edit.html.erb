@@ -1,0 +1,15 @@
+
+<div id='content'>
+    <h2>Edit <%= @contact.first_names %></h2>
+
+    <% form_for @contact do |f| %>
+        <p style='float: left'>First Name    <%= f.text_field :first_name %>  </p>
+        <p>Last Name     <%= f.text_field :last_name %>   </p>
+        <p>Spouse's Name <%= f.text_field :spouses_name %></p>
+
+        <p>Details <%= f.text_area :details, 'cols' => 62, 'rows' => 8 %></p>
+
+        <p><%= submit_tag "Save #{@contact.first_names}" %></p>
+    <% end %>
+</div>
+
