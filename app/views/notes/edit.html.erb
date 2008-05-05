@@ -1,0 +1,13 @@
+
+<div id='note'>
+    <h2>Edit Note</h2>
+    <%= flash[:error] %>
+    <% form_for @note do |f| %>
+        <div>
+        <p>Timestamp     <%= f.datetime_select "timestamp" %>   </p>
+        <p>Text <%= f.text_area  :text, :rows => '5', :cols => '40'%>  </p>
+        </div>
+        <p><%= submit_tag "Save" %></p>
+    <% end %>
+</div>
+
