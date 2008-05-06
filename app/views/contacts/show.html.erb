@@ -1,6 +1,18 @@
 
 <div id='column'>
     <%= link_to "Edit #{@contact.first_names}", { :action => 'edit', :id => @contact.id }, { :class => 'add-link' } %>
+
+    <div id='contact-info'>
+        <h3>Contact Info</h3>
+
+        <span class='contact-type'>Phone</span>
+        <ul class='contact-list'>
+<% @contact.phone_numbers.each do | phone | %>
+            <li> <%= phone.number %> <span class='contact-loc'><%= phone.label %></span></li>
+<% end %>
+        </ul>
+    </div>
+
     <div id='details'>
         <h3>Details</h3>
         <p><%= @contact.details %></p>
