@@ -38,8 +38,9 @@
 
 <% @contact.notes.sort{ |a,b| b.timestamp <=> a.timestamp }.each do |note| %>
         <li>
-            <div class='header'><span class='date'><%= note.timestamp %></span></div>
+            <div class='header'><span class='date'><%= note.timestamp.strftime("%A %b %d at %I:%M%p") %></span></div>
             <p><%= note.text %></p>
+			      <p><%= link_to 'edit', :controller => 'notes', :action => 'edit' %></p>
         </li>
 <% end %>
 
