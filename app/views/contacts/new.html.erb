@@ -11,13 +11,7 @@
 
         <p>
             Phone Numbers
-            <% fields_for :phone_numbers, :index => nil do |f| %>
-                <p style='float: left'>Number <%= f.text_field :number %></p>
-                <p>Label <%= f.text_field :label %></p>
-           
-                <p style='float: left'>Number <%= f.text_field :number %></p>
-                <p>Label <%= f.text_field :label %></p>
-            <% end %>
+            <%= render :partial => 'phone_number', :collection => @contact.phone_numbers %>
         </p>
 
         <p><%= submit_tag 'Add Contact' %></p>

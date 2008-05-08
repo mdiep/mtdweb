@@ -14,6 +14,8 @@ class ContactsController < ApplicationController
     
     def new
         @page_title = "New Contact"
+        @contact    = Contact.new
+        2.times { @contact.phone_numbers.build }
     end
     
     def create
