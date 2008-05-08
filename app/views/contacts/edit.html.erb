@@ -8,6 +8,13 @@
         <p>Spouse's Name <%= f.text_field :spouses_name %></p>
 
         <p>Details <%= f.text_area :details, 'cols' => 62, 'rows' => 8 %></p>
+        
+        <p>
+            Phone Numbers
+            <%= render :partial => 'phone_number', :collection => @contact.phone_numbers %>
+            
+        </p>
+        
 
         <p><%= submit_tag "Save #{@contact.first_names}" %></p>
     <% end %>

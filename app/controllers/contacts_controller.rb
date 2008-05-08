@@ -42,6 +42,7 @@ class ContactsController < ApplicationController
         if params[:contact][:spouses_name] == ''
             params[:contact][:spouses_name] = nil
         end
+        
         if @contact.update_attributes(params[:contact])
             redirect_to @contact
         else
