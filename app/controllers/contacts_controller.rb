@@ -24,7 +24,6 @@ class ContactsController < ApplicationController
         if @contact.spouses_name == ''
             @contact.spouses_name = nil
         end
-        @contact.phone_numbers = params[:phone_numbers].map { |number| PhoneNumber.new(number) }
         @contact.save
         
         if not @contact.errors.empty?
