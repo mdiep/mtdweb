@@ -18,13 +18,21 @@ class Contact < ActiveRecord::Base
         return first_names + ' ' + last_name
     end
     
-    def phone_number_attributes=(phone_number_attributes)
+    def new_phone_number_attributes=(phone_number_attributes)
         phone_number_attributes.each do |attributes|
-            if attributes[:id].blank?
+            if not attributes[:number].blank?
                 phone_numbers.build(attributes)
+            end
+        end
+    end
+    
+    def existing_phone_number_attributes=(phone_number_attributes)
+        phone_numbers.reject(&:new_record?).each do |pn|
+            attributes = phone_number_attributes[pn.id.to_s]
+            if attributes.nil? or attributes[:number].blank?
+                phone_numbers.delete(pn)
             else
-                phone_number = phone_numbers.detect { |pn| pn.id == attributes[:id].to_i }
-                phone_number.attributes = attributes
+                pn.attributes = attributes
             end
         end
     end

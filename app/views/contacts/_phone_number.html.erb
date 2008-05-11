@@ -1,7 +1,7 @@
-<% fields_for "contact[phone_number_attributes][]", phone_number, :index => nil do |f| %>
+<% fields_for_phone_number phone_number do |f| %>
     <div class='phone-number-field'>
         <%= f.text_field :number %>
-        <%= f.select :label, PhoneNumber.labels %>
+        <%= f.select :label, PhoneNumber.labels, { :index => nil } %>
     </div>
     <% unless phone_number.new_record? %>
     <%= f.hidden_field :id %>

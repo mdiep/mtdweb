@@ -12,7 +12,7 @@
         <p>
             Phone Numbers
             <%= render :partial => 'phone_number', :collection => @contact.phone_numbers %>
-            
+            <%= render :partial => 'phone_number', :locals => { :phone_number => PhoneNumber.new }  %>
         </p>
         
 
