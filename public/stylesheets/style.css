@@ -203,6 +203,18 @@ ul#contact-groups
 	padding: 0;
 }
 
+div.phone-number-field
+{
+	margin-bottom: 0.5em;
+}
+
+div.phone-number-field input,
+div.phone-number-field select
+{
+	display: block;
+	float: left;
+}
+
 
 /* @group tasks */
 

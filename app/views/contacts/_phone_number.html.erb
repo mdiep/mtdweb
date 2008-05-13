@@ -2,6 +2,7 @@
     <div class='phone-number-field'>
         <%= f.text_field :number %>
         <%= f.select :label, PhoneNumber.labels, { :index => nil } %>
+        <%= link_to_function image_tag('remove.png'), '$(this).up("div").remove()' %>
     </div>
     <% unless phone_number.new_record? %>
     <%= f.hidden_field :id %>
