@@ -203,31 +203,6 @@ ul#contact-groups
 	padding: 0;
 }
 
-ul.filter
-{
-	list-style: none;
-	padding: 0;
-}
-
-ul.filter li
-{
-	margin-bottom: 1em;
-}
-
-ul.filter a.delete-criteria,
-ul.filter a.add-criteria
-{
-	background-color: lightgrey;
-	border: solid grey 1px;
-	color: grey;
-	padding: 0em 0.35em;
-	text-align: center;
-	text-decoration: none;
-}
-
-ul.filter a.delete-criteria
-{
-}
 
 /* @group tasks */
 
