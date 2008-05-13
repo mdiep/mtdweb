@@ -45,6 +45,14 @@ a.add-link
 	font-size: 1.1em;
 }
 
+a.add-partial
+{
+	display: block;
+	width: 18em;
+	text-align: right;
+	font-size: 0.9em;
+}
+
 table
 {
 	width: 100%;

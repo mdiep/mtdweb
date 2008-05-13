@@ -11,8 +11,11 @@
         
         <p>
             Phone Numbers
+            <div id='phone-numbers'>
             <%= render :partial => 'phone_number', :collection => @contact.phone_numbers %>
             <%= render :partial => 'phone_number', :locals => { :phone_number => PhoneNumber.new }  %>
+            </div>
+            <%= add_partial_link "Add Phone Number", 'phone-numbers', 'phone_number', PhoneNumber.new %>
         </p>
         
 
