@@ -1,11 +1,9 @@
 class UsersController < ApplicationController
-  # Be sure to include AuthenticationSystem in Application Controller instead
-  include AuthenticatedSystem
-  
+    before_filter :admin_required
 
-  # render new.rhtml
-  def new
-  end
+    def new
+        @page_title = "Create New User"
+    end
 
   def create
     cookies.delete :auth_token
@@ -14,11 +12,11 @@ class UsersController < ApplicationController
     # uncomment at your own risk
     # reset_session
     @user = User.new(params[:user])
+    @user.is_admin = params[:user][:is_admin] == "1" ? true : false
     @user.save
     if @user.errors.empty?
-      self.current_user = @user
       redirect_back_or_default('/')
-      flash[:notice] = "Thanks for signing up!"
+      flash[:notice] = "Created user #{@user.login}"
     else
       render :action => 'new'
     end

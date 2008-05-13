@@ -5,8 +5,14 @@
         <%= javascript_include_tag :defaults %>
     </head>
     <body>
+
+<% if current_user.is_admin %>
+        <div id='admin-bar'>
+            <%= link_to 'Create New User', :controller => 'users', :action => 'new' %>
+        </div>
+<% end %>
+
         <div id="banner">
-            <span id="logo">mtdweb</span>
 
 <% if logged_in? %>
             <div id="account-info">
@@ -14,6 +20,8 @@
                 <a href='/session/destroy'>Log Out</a>
            </div> 
 <% end %>
+
+            <span id="logo">mtdweb</span>
 
         </div>
 

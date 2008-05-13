@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080513170418) do
+ActiveRecord::Schema.define(:version => 20080513200252) do
 
   create_table "contacts", :force => true do |t|
     t.integer "user_id"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20080513170418) do
     t.datetime "updated_at"
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
+    t.boolean  "is_admin",                                :default => false
   end
 
 end

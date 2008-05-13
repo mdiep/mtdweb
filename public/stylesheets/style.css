@@ -75,6 +75,12 @@ p textarea
 	margin-right:  2em;
 }
 
+p input.checkbox
+{
+	display: inline;
+	margin-right: 1em;
+}
+
 /* banner */
 
 div#banner
@@ -90,9 +96,9 @@ span#logo
 div#account-info
 {
 	font-size: 0.9em;
-	position: absolute;
-	top: 1em;
-	right: 2em;
+	float: right;
+	position: relative;
+	top: -1em
 }
 
 div#account-info a
@@ -102,6 +108,18 @@ div#account-info a
 	margin-left: 0.5em;
 }
 
+
+/* @group admin bar */
+
+div#admin-bar
+{
+	padding: 0.25em 0.5em;
+	font-size: 0.9em;
+	border-bottom: solid grey 1px;
+	background: lightgrey;
+}
+
+/* @end */
 
 
 /* @group navbar */
