@@ -1,10 +1,11 @@
 
 class Contact < ActiveRecord::Base
     belongs_to :user
-    has_many   :notes,          :dependent => :destroy
-    has_many   :phone_numbers,  :dependent => :destroy
+    has_many   :notes,           :dependent => :destroy
+    has_many   :phone_numbers,   :dependent => :destroy
+    has_many   :email_addresses, :dependent => :destroy
 
-    after_update :save_phone_numbers
+    after_update :save_phone_numbers, :save_email_addresses
     
     def first_names
         if spouses_name.nil?
@@ -40,6 +41,31 @@ class Contact < ActiveRecord::Base
     def save_phone_numbers
         phone_numbers.each do |pn|
             pn.save(false) # false = no validation
+        end
+    end
+    
+    def new_email_address_attributes=(email_address_attributes)
+        email_address_attributes.each do |attributes|
+            if not attributes[:address].blank?
+                email_addresses.build(attributes)
+            end
+        end
+    end
+    
+    def existing_email_address_attributes=(email_address_attributes)
+        email_addresses.reject(&:new_record?).each do |ea|
+            attributes = email_address_attributes[ea.id.to_s]
+            if attributes.nil? or attributes[:address].blank?
+                email_addresses.delete(ea)
+            else
+                ea.attributes = attributes
+            end
+        end
+    end
+
+    def save_email_addresses
+        email_addresses.each do |ea|
+            ea.save(false) # false = no validation
         end
     end
 end

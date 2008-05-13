@@ -1,5 +1,5 @@
 <% fields_for_phone_number phone_number do |f| %>
-    <div class='phone-number-field'>
+    <div class='contact-field'>
         <%= f.text_field :number %>
         <%= f.select :label, PhoneNumber.labels, { :index => nil } %>
         <%= link_to_function image_tag('remove.png'), '$(this).up("div").remove()' %>

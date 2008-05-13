@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080509181901) do
+ActiveRecord::Schema.define(:version => 20080513170418) do
 
   create_table "contacts", :force => true do |t|
     t.integer "user_id"
@@ -19,6 +19,12 @@ ActiveRecord::Schema.define(:version => 20080509181901) do
     t.integer "referred_by"
     t.text    "details"
     t.date    "created_on"
+  end
+
+  create_table "email_addresses", :force => true do |t|
+    t.integer "contact_id",               :null => false
+    t.string  "label",      :limit => 10
+    t.string  "address",    :limit => 75
   end
 
   create_table "notes", :force => true do |t|

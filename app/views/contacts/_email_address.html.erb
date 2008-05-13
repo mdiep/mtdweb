@@ -1,0 +1,11 @@
+<% fields_for_email_address email_address do |f| %>
+    <div class='contact-field'>
+        <%= f.text_field :address %>
+        <%= f.select :label, EmailAddress.labels, { :index => nil } %>
+        <%= link_to_function image_tag('remove.png'), '$(this).up("div").remove()' %>
+    </div>
+    <% unless email_address.new_record? %>
+    <%= f.hidden_field :id %>
+    <% end %>
+<% end %>
+

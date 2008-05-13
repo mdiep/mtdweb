@@ -5,13 +5,24 @@
     <div id='contact-info'>
         <h3>Contact Info</h3>
 
+<% if not @contact.phone_numbers.empty? %>
         <span class='contact-type'>Phone</span>
         <ul class='contact-list'>
-<% @contact.phone_numbers.each do | phone | %>
+    <% @contact.phone_numbers.each do | phone | %>
             <li> <%= phone.number %> <span class='contact-loc'><%= phone.label %></span></li>
+    <% end %>
+        </ul>
 <% end %>
+
+<% if not @contact.email_addresses.empty? %>
+        <span class='contact-type'>Email</span>
+        <ul class='contact-list'>
+    <% @contact.email_addresses.each do | email | %>
+            <li> <%= email.address %> <span class='contact-loc'><%= email.label %></span></li>
+    <% end %>
         </ul>
     </div>
+<% end %>
 
     <div id='details'>
         <h3>Details</h3>

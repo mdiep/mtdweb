@@ -51,6 +51,7 @@ a.add-partial
 	width: 18em;
 	text-align: right;
 	font-size: 0.9em;
+	margin-bottom: 1em;
 }
 
 table
@@ -211,13 +212,13 @@ ul#contact-groups
 	padding: 0;
 }
 
-div.phone-number-field
+div.contact-field
 {
 	margin-bottom: 0.5em;
 }
 
-div.phone-number-field input,
-div.phone-number-field select
+div.contact-field input,
+div.contact-field select
 {
 	display: block;
 	float: left;

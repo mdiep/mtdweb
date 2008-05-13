@@ -17,6 +17,14 @@
             <%= add_partial_link "Add Phone Number", 'phone-numbers', 'phone_number', PhoneNumber.new %>
         </p>
 
+        <p>
+            Email Addresses
+            <div id='email-addresses'>
+                <%= render :partial => 'email_address', :collection => @contact.email_addresses %>
+            </div>
+            <%= add_partial_link "Add Email Address", 'email-addresses', 'email_address', EmailAddress.new %>
+        </p>
+
         <p><%= submit_tag 'Add Contact' %></p>
     <% end -%>
 
