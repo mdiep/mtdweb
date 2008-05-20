@@ -4,6 +4,8 @@ class Contact < ActiveRecord::Base
     has_many   :notes,           :dependent => :destroy
     has_many   :phone_numbers,   :dependent => :destroy
     has_many   :email_addresses, :dependent => :destroy
+    has_many   :taggings,        :dependent => :destroy
+    has_many   :tags, :through => :taggings
 
     after_update :save_phone_numbers, :save_email_addresses
     
@@ -67,5 +69,26 @@ class Contact < ActiveRecord::Base
         email_addresses.each do |ea|
             ea.save(false) # false = no validation
         end
+    end
+    
+    def tag_with(new)
+        existing = self.tags.collect { |t| t.name }
+        deleted  = existing - new
+        added    = new - existing
+        
+        deleted.each do |name|
+            tag = Tag.find_by_name(name)
+            Tagging.find_by_tag_id_and_contact_id(tag.id, self.id).destroy
+            if tag.contacts.empty?
+                tag.destroy
+            end
+        end
+        
+        added.each do |name|
+            tag = Tag.find_or_create_by_name_and_user_id(name, self.user.id)
+            self.tags.push(tag)
+        end
+        
+        self.reload
     end
 end

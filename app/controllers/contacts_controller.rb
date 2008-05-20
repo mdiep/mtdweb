@@ -1,6 +1,7 @@
 
 class ContactsController < ApplicationController
     before_filter :login_required
+    protect_from_forgery :except => ['tags']
     
     def index
         @page_title = "Contacts"
@@ -9,6 +10,7 @@ class ContactsController < ApplicationController
     
     def show
         @contact    = Contact.find(params[:id])
+        @tags       = Tag.find_all_by_user_id(current_user.id)
         @page_title = @contact.full_name
     end
     
@@ -50,5 +52,15 @@ class ContactsController < ApplicationController
         else
             render :action => 'edit'
         end
+    end
+    
+    def tags
+        @contact = Contact.find(params[:id])
+        if params[:tags]
+            @contact.tag_with(params[:tags].values)
+        else
+            @contact.tag_with([])
+        end
+        render :partial => 'tags'
     end
 end

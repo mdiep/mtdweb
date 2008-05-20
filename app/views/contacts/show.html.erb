@@ -30,10 +30,44 @@
     </div>
 </div>
 
+<div id='edit-tags-dialog' class='modal-dialog'>
+    <%= link_to_function "X", "$('edit-tags-dialog').hide();", :class => 'X' %>
+    <h2>Edit Tags for <%= @contact.first_names %></h2>
+    <div id='edit-tags-list' class='tag-list'>
+    </div>
+
+    <div id='add-tag-box'>
+        <form onSubmit='return addTag()'>
+        <h2>Add a New Tag</h2>
+        <%= text_field :tag, :name %>
+        <%= submit_tag 'Create' %>
+        </form>
+    </div>
+</div>
+<script type='text/javascript'>
+var tags = [
+<%= @tags.sort { |a,b| a.name <=> b.name }.collect { |tag| "'#{tag.name}'" }.join(", ") %>
+];
+var selected_tags = [
+<%= @contact.tags.collect { |tag| "'#{tag.name}'" }.join(", ") %>
+];
+
+var edit_tags_list = $('edit-tags-list')
+</script>
+<%= javascript_include_tag 'tag-editing.js' %>
+<%= javascript_tag "$('edit-tags-dialog').hide(); new Dialog.EditTags('#{tags_contact_url(@contact)}');" %>
+
+
 <div id='content'>
     <div id='name'>
         <h1><%= @contact.full_name %></h1>
+
+        <div id='contact-tag-list' class='tag-list'>
+            <%= render :partial => 'tags' %>
+        </div>
     </div>
+
+    <form action='<%= tags_contact_url(@contact) %>' method='POST'><input type='submit' /></form>
 
     <div id='add-note'>
     <% form_for :note, :url => notes_path do |f| -%>

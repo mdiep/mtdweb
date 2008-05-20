@@ -212,7 +212,7 @@ div#referred-by
 	padding-left: 0.3em;
 }
 
-div#tag-list a#add-tag
+div#contact-tag-list a#edit-tags
 {
 	font-size: 0.85em;
 	margin-left: 0.4em;
@@ -240,6 +240,19 @@ div.contact-field select
 {
 	display: block;
 	float: left;
+}
+
+div.modal-dialog
+{
+	background-color: white;
+	padding: 1em;
+	width: 500px;
+	height: 400px;
+}
+
+div.modal-dialog a.X
+{
+	float: right;
 }
 
 
@@ -334,6 +347,11 @@ div#note-buttons input#add-button
 
 /* @group tags */
 
+div.tag-list
+{
+	line-height: 1.5em;
+}
+
 div.tag
 {
 	float: left;
@@ -343,10 +361,10 @@ div.tag
 
 div.tag a
 {
-	border: solid #bbb 1px;
-	background-color: #eee;
+	border: solid #ccc 1px;
+	background-color: white;
 	padding: 0.2em 0.5em;
-	color: black;
+	color: #666;
 	text-decoration: none;
 }
 
@@ -363,8 +381,15 @@ div.tag a.x:hover
 
 div.selected-tag a
 {
-	background-color: #ccc;
+	border: solid #aaa 1px;
+	background-color: #ddd;
 	color: #black;
+}
+
+div#add-tag-box
+{
+	position: absolute;
+	top: 350px;
 }
 
 /* @end */
