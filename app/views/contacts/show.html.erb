@@ -67,8 +67,6 @@ var edit_tags_list = $('edit-tags-list')
         </div>
     </div>
 
-    <form action='<%= tags_contact_url(@contact) %>' method='POST'><input type='submit' /></form>
-
     <div id='add-note'>
     <% form_for :note, :url => notes_path do |f| -%>
         <%= f.hidden_field :contact_id, :value => @contact.id %>
