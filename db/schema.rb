@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080514200828) do
+ActiveRecord::Schema.define(:version => 20080521194001) do
 
   create_table "contacts", :force => true do |t|
     t.integer "user_id"
@@ -28,10 +28,10 @@ ActiveRecord::Schema.define(:version => 20080514200828) do
   end
 
   create_table "notes", :force => true do |t|
-    t.integer  "contact_id", :null => false
-    t.boolean  "contacted"
+    t.integer  "contact_id",                    :null => false
     t.text     "text"
-    t.datetime "timestamp",  :null => false
+    t.datetime "timestamp",                     :null => false
+    t.boolean  "contacted",  :default => false, :null => false
   end
 
   create_table "phone_numbers", :force => true do |t|

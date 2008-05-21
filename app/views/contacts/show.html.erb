@@ -72,6 +72,9 @@ var edit_tags_list = $('edit-tags-list')
         <%= f.hidden_field :contact_id, :value => @contact.id %>
         <%= f.text_area :text, 'cols' => 60, 'rows' => 6 %>
         <div id='note-buttons'>
+            <div id='attempt'>
+                <%= f.check_box :contacted %>Contacted <%= @contact.first_names %>
+            </div>
             <%= submit_tag 'Add Note' %>
         </div>
     <% end %>
