@@ -81,7 +81,9 @@ var edit_tags_list = $('edit-tags-list')
 
 <% @contact.notes.sort{ |a,b| b.timestamp <=> a.timestamp }.each do |note| %>
         <li>
-            <div class='header'><span class='date'><%= note.timestamp.strftime("%A %b %d at %I:%M%p") %></span></div>
+            <div class='header'>
+                <span class='date'><%= note.timestamp.strftime("%A %b %d") %></span><%= note.timestamp.strftime(" at %I:%M %p") %>
+            </div>
             <p><%= note.text %></p>
 			      <p><%= link_to 'edit', :controller => 'notes', :action => 'edit' %></p>
         </li>
