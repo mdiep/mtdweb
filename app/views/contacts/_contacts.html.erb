@@ -2,7 +2,7 @@
 <table>
     <tr> <th>Name</th> </tr>
 
-<% @contacts.sort { |a,b| a.last_name <=> b.last_name }.each do |c| %>
+<% @contacts.sort.each do |c| %>
     <tr> <td><%= link_to c.full_name, contact_url(c) %></td> </tr>
 <% end %>
 
