@@ -1,20 +1,50 @@
 
+<script type='text/javascript'>
+function toggle_tag(tag)
+{
+    tag = $(tag);
+
+    if (tag.hasClassName('selected-tag'))
+        tag.removeClassName('selected-tag');
+    else
+        tag.addClassName('selected-tag');
+
+    var selected = $('filter-tag-list').getElementsBySelector('.selected-tag a');
+    var params   = { };
+    for (var i=0, tag; tag = selected[i]; i++)
+        params['tags[' + i + ']'] = tag.text;
+
+    new Ajax.Updater({ success: 'contact-list' }, '<%= list_contacts_url %>', {
+        method:     'get',
+        parameters: params,
+    });
+}
+</script>
+
 <div id='column'>
     <a class='add-link' href='/contacts/new'>Add Contact</a>
+
+    <h3>Filter Contacts</h3>
+
+    <div>
+        <h4>By Tag</h4>
+        <div id='filter-tag-list' class='tag-list'>
+<% @tags.each do |tag| %>
+            <div class='tag' id='tag-<%= tag.id %>'>
+                <%= link_to_function tag.name, "toggle_tag('tag-#{tag.id}')" %>
+            </div>
+<% end %>
+        </div>
+    </div>
 </div>
 
 <div id='content'>
 
     <h2>Contacts</h2>
 
-    <table>
-        <tr> <th>Name</th> </tr>
-
-<% @contacts.each do |c| %>
-        <tr> <td><%= link_to c.full_name, contact_url(c) %></td> </tr>
-<% end %>
-
-    </table>
+    <div id='contact-list'>
+        <%= render :partial => 'contacts' %>
+    </div>
 
 </div>
 

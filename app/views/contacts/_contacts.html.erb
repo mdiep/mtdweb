@@ -1,0 +1,10 @@
+
+<table>
+    <tr> <th>Name</th> </tr>
+
+<% @contacts.each do |c| %>
+    <tr> <td><%= link_to c.full_name, contact_url(c) %></td> </tr>
+<% end %>
+
+</table>
+

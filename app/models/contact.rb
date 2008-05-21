@@ -91,4 +91,23 @@ class Contact < ActiveRecord::Base
         
         self.reload
     end
+    
+    def Contact.find_all_by_user_id_tagged(user_id, tags)
+        user_id  = user_id.to_i
+        tag_list = tags.collect { |t| quote_value(t) }.join(",")
+        sql = "SELECT #{Contact.table_name}.*
+                 FROM #{Contact.table_name},
+                      (SELECT #{Tagging.table_name}.contact_id AS contact_id,
+                              COUNT(*) AS count
+                         FROM #{Tagging.table_name},
+                              #{Tag.table_name}
+                        WHERE #{Tagging.table_name}.tag_id = #{Tag.table_name}.id
+                          AND #{Tag.table_name}.name IN (#{tag_list})
+                          AND #{Tag.table_name}.user_id = #{user_id}
+                     GROUP BY #{Tagging.table_name}.contact_id) AS taggings
+                WHERE taggings.contact_id = #{Contact.table_name}.id
+                  AND taggings.count = #{tags.size}";
+                  
+        return Contact.find_by_sql(sql)
+    end
 end
