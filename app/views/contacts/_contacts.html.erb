@@ -1,9 +1,9 @@
 
 <table>
-    <tr> <th>Name</th> </tr>
+    <tr> <th>Name</th> <th>Last Contact</th> </tr>
 
 <% @contacts.sort.each do |c| %>
-    <tr> <td><%= link_to c.full_name, contact_url(c) %></td> </tr>
+    <tr> <td><%= link_to c.full_name, contact_url(c) %></td> <td><%= c.last_contact %></td> </tr>
 <% end %>
 
 </table>

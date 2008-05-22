@@ -26,6 +26,11 @@ class Contact < ActiveRecord::Base
         return first_names + ' ' + last_name
     end
     
+    def last_contact
+        note = self.notes.sort.reverse.find { |note| note.contacted }
+        return note.nil? ? nil : note.timestamp.strftime("%A, %b %d")
+    end
+    
     def new_phone_number_attributes=(phone_number_attributes)
         phone_number_attributes.each do |attributes|
             if not attributes[:number].blank?
