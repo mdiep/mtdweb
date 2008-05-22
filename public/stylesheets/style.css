@@ -85,7 +85,7 @@ p input.checkbox
 
 div#banner
 {
-    padding: 2em 2em 1em;
+    padding: 1.5em 2em;
 }
 
 span#logo
@@ -105,7 +105,7 @@ div#account-info a
 {
 	border-left: solid black 1px;
 	padding-left: 0.5em;
-	margin-left: 0.5em;
+	margin-left: 0.3em;
 }
 
 
@@ -126,8 +126,8 @@ div#admin-bar
 
 div#navbar
 {
-	height: 1.2em;
-	padding: 0 2em;
+	height: 1.4em;
+	padding: 0.5em 2em;
 	margin-bottom: 1em;
 }
 
@@ -148,6 +148,8 @@ ul#nav-links li
 ul#nav-links a
 {
 	text-decoration: none;
+	text-transform: lowercase;
+	font-size: 1.2em;
 }
 
 ul#nav-links a:hover
@@ -196,12 +198,15 @@ div#column p
 div#content
 {
 	padding: 1em;
-	padding-right: 2em;
+	margin-top: 2em;
+	margin-right: 1em;
     margin-left: 305px;
 }
 
 div#name
 {
+	padding: 1em;
+	margin: -1em;
 	margin-bottom: 1em;
 }
 
@@ -383,7 +388,7 @@ div.selected-tag a
 {
 	border: solid #aaa 1px;
 	background-color: #ddd;
-	color: #black;
+	color: black;
 }
 
 div#add-tag-box
@@ -474,8 +479,7 @@ ul#contact-history
 
 ul#contact-history li
 {
-	margin-bottom: 0.75em;
-	padding-top: 0.5em;
+	padding: 1em 0;
 }
 
 ul#contact-history li.unsuccessful
