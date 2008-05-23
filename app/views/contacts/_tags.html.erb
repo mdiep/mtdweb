@@ -1,6 +1,4 @@
 
-<% @contact.tags.sort { |a,b| a.name <=> b.name }.each do |tag| %>
-    <div class='tag selected-tag'><a href='#'><%= tag.name %></a></div>
-<% end %>
+    tagged: <%= @contact.tags.sort.collect { |tag| tag.name }.join(", ") %>
     <%= link_to_function "edit tags", "$('edit-tags-dialog').show();", :id => 'edit-tags' %>
 

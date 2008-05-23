@@ -1,6 +1,8 @@
 
 <div id='content'>
-    <h2>Edit <%= @contact.first_names %></h2>
+    <div class='content-title'>
+        <h2>Edit <%= @contact.first_names %></h2>
+    </div>
 
     <% form_for @contact do |f| %>
         <p style='float: left'>First Name    <%= f.text_field :first_name %>  </p>

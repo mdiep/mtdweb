@@ -13,12 +13,14 @@ h3 { font-size: 1.15em; }
 
 body
 {
-    font: 0.9em/1.35 "Lucida Grande";
+	background: #fafafa;
+    font: 0.9em/1.5 "Lucida Grande";
 }
 
 h2
 {
 	margin-bottom: 0.3em;
+	font-size: 1.5em;
 }
 
 h4
@@ -65,6 +67,17 @@ table td, table th
 {
 	border-bottom: solid #e8e8e8 1px;
 	padding: 0.25em;
+	font-size: 1.1em;
+}
+
+table td
+{
+	padding: 0.5em 0;
+}
+
+a
+{
+	color: blue;
 }
 
 p input,
@@ -85,7 +98,15 @@ p input.checkbox
 
 div#banner
 {
-    padding: 1.5em 2em;
+	background: url(/images/slice.png) repeat-x;
+	border-bottom: solid 1px black;
+	color: whitesmoke;
+    padding: 0.5em 2em;
+}
+
+div#banner a
+{
+	color: cornflowerblue;
 }
 
 span#logo
@@ -97,8 +118,6 @@ div#account-info
 {
 	font-size: 0.9em;
 	float: right;
-	position: relative;
-	top: -1em
 }
 
 div#account-info a
@@ -113,10 +132,17 @@ div#account-info a
 
 div#admin-bar
 {
-	padding: 0.25em 0.5em;
+	padding: 0.25em 1em;
 	font-size: 0.9em;
-	border-bottom: solid grey 1px;
-	background: lightgrey;
+	background: rgb(49,50,54);
+	border-bottom: solid 1px #222;
+}
+
+div#admin-bar a
+{
+	color: cornflowerblue;
+	text-transform: uppercase;
+	font-size: 0.8em;
 }
 
 /* @end */
@@ -126,9 +152,10 @@ div#admin-bar
 
 div#navbar
 {
-	height: 1.4em;
-	padding: 0.5em 2em;
-	margin-bottom: 1em;
+	background: url(/images/mid-slice.png) repeat-x;
+	border-bottom: solid lightgray 1px;
+	height: 1.75em;
+	padding: 0.25em 2em;
 }
 
 ul#nav-links
@@ -149,7 +176,7 @@ ul#nav-links a
 {
 	text-decoration: none;
 	text-transform: lowercase;
-	font-size: 1.2em;
+	font-size: 1.25em;
 }
 
 ul#nav-links a:hover
@@ -197,17 +224,32 @@ div#column p
 
 div#content
 {
-	padding: 1em;
-	margin-top: 2em;
+	background: white;
+	border-top: solid 1px #ddd;
+	border-left: solid 1px #ddd;
+	padding: 1em 2em;
+	margin-top: 1em;
 	margin-right: 1em;
     margin-left: 305px;
+}
+
+.content-title
+{
+	background: #f4f4f4;
+	border-bottom: solid 1px #ddd;
+	padding: 0.5em 1em 0em;
+	margin: -1em -2em;
+	margin-bottom: 1em;
+}
+
+th#last-contact-column
+{
+	width: 13em;
 }
 
 div#name
 {
 	padding: 1em;
-	margin: -1em;
-	margin-bottom: 1em;
 }
 
 div#referred-by
@@ -217,10 +259,14 @@ div#referred-by
 	padding-left: 0.3em;
 }
 
+div#contact-tag-list
+{
+	font-size: 0.9em;
+}
+
 div#contact-tag-list a#edit-tags
 {
-	font-size: 0.85em;
-	margin-left: 0.4em;
+	margin-left: 0.5em;
 }
 
 div#prayer-letter
@@ -315,6 +361,7 @@ div#add-note
 {
 	margin-top: 2.5em;
 	margin-bottom: 3em;
+	margin-left: 1.75em;
 	width: 33em;
 }
 
@@ -357,11 +404,16 @@ div.tag-list
 	line-height: 1.5em;
 }
 
+div#column div.tag
+{
+	font-size: 0.8em;
+}
+
 div.tag
 {
 	float: left;
 	margin: 0.1em 0.3em;
-	font-size: 0.8em;
+	font-size: 0.75em;
 }
 
 div.tag a
@@ -373,22 +425,11 @@ div.tag a
 	text-decoration: none;
 }
 
-div.tag a.x
-{
-	border-left: 0;
-}
-
-div.tag a.x:hover
-{
-	background-color: #ccc;
-	color: #black;
-}
-
 div.selected-tag a
 {
-	border: solid #aaa 1px;
-	background-color: #ddd;
-	color: black;
+	border: solid cornflowerblue 1px;
+	background-color: cornflowerblue;
+	color: white;
 }
 
 div#add-tag-box
@@ -477,9 +518,19 @@ ul#contact-history
     width: 500px;
 }
 
+ul#contact-history li#contact-history-title
+{
+	padding: 0.25em 1em;
+	border: 0;
+	background: #eee;
+	font-weight: bold;
+}
+
 ul#contact-history li
 {
-	padding: 1em 0;
+	font-size: 0.95em;
+	padding: 0.75em 0.5em 1.5em;
+	border-bottom: solid 1px #ccc;
 }
 
 ul#contact-history li.unsuccessful
@@ -488,7 +539,8 @@ ul#contact-history li.unsuccessful
 
 ul#contact-history div.header
 {
-	margin-bottom: 0.5em;
+	font-size: 1.1em;
+	margin-bottom: 0.3em;
 }
 
 /* @end */
