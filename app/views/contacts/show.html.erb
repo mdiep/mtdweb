@@ -91,7 +91,7 @@ var edit_tags_list = $('edit-tags-list')
                 <span class='date'><%= note.timestamp.strftime("%A, %b %d") %></span><%= note.timestamp.strftime(" at %I:%M %p") %>
             </div>
             <p><%= note.text %></p>
-			      <p><%= link_to 'edit', :controller => 'notes', :action => 'edit' %></p>
+			      <p><%= link_to 'edit', edit_note_url(note) %></p>
         </li>
     <% end %>
 
