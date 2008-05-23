@@ -12,11 +12,21 @@ class NotesController < ApplicationController
     
     def edit
         @page_title = "Edit Note"
-        @note       = Note.find(params[:id])        
+        @note       = Note.find(params[:id])
+        
+        # Security: make sure this note belongs to this user
+        if @note.contact.user != current_user
+            redirect_to '/', :status => 401
+        end
     end
     
     def update
         @note = Note.find(params[:id])
+        
+        # Security: make sure this note belongs to this user
+        if @note.contact.user != current_user
+            redirect_to '/', :status => 401
+        end
       
         if @note.update_attributes(params[:note])
             redirect_to @note.contact
