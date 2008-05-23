@@ -8,7 +8,7 @@
     <% form_for @note do |f| %>
         <div>
         <p>Timestamp     <%= f.datetime_select "timestamp" %>   </p>
-        <p>Text <%= f.text_area  :text, :rows => '5', :cols => '40'%>  </p>
+        <p>Text <%= f.text_area  :text, :rows => '6', :cols => '60'%>  </p>
         </div>
         <p><%= submit_tag "Save" %></p>
     <% end %>
