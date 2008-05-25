@@ -75,6 +75,15 @@ table td
 	padding: 0.5em 0;
 }
 
+table tr.footer-row td
+{
+	border-top: solid #e8e8e8 3px;
+	border-bottom: 0;
+	font-weight: bold;
+	font-size: 0.9em;
+	text-align: right;
+}
+
 a
 {
 	color: blue;
