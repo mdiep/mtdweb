@@ -80,6 +80,11 @@ a
 	color: blue;
 }
 
+a img
+{
+	border: 0;
+}
+
 p input,
 p textarea
 {
