@@ -27,7 +27,7 @@ class Contact < ActiveRecord::Base
     end
     
     def last_contact
-        note = self.notes.sort.reverse.find { |note| note.contacted }
+        note = self.notes.sort.find { |note| note.contacted }
         return note.nil? ? nil : note.timestamp.strftime("%A, %b %d")
     end
     
