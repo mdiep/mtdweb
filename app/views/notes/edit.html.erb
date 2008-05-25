@@ -1,16 +1,21 @@
 
 <div id='content'>
     <div class='content-title'>
-        <h2>Edit Note</h2>
+        <h2>Edit Note for <%= @note.contact.full_name %></h2>
     </div>
 
     <%= flash[:error] %>
+    <div id='note-form'>
     <% form_for @note do |f| %>
-        <div>
         <p>Timestamp     <%= f.datetime_select "timestamp" %>   </p>
         <p>Text <%= f.text_area  :text, :rows => '6', :cols => '60'%>  </p>
+        <div id='note-buttons'>
+            <div id='attempt'>
+                <%= f.check_box :contacted %>Contacted <%= @note.contact.first_names %>
+            </div>
+            <%= submit_tag "Save Note" %>
         </div>
-        <p><%= submit_tag "Save" %></p>
     <% end %>
+    </div>
 </div>
 

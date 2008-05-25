@@ -67,7 +67,7 @@ var edit_tags_list = $('edit-tags-list')
         </div>
     </div>
 
-    <div id='add-note'>
+    <div id='note-form'>
     <% form_for :note, :url => notes_path do |f| -%>
         <%= f.hidden_field :contact_id, :value => @contact.id %>
         <%= f.text_area :text, 'cols' => 60, 'rows' => 6 %>
