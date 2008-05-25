@@ -1,9 +1,12 @@
 
 <table>
-    <tr> <th>Name</th> <th id='last-contact-column'>Last Contact</th> </tr>
+    <tr>
+        <th><%= link_to_function "Name", 'sort_by("name")' %></th>
+        <th id='last-contact-column'><%= link_to_function "Last Contact", 'sort_by("last_contact")' %></th>
+    </tr>
 
-<% @contacts.sort.each do |c| %>
-    <tr> <td><%= link_to c.full_name, contact_url(c) %></td> <td><%= c.last_contact %></td> </tr>
+<% @contacts.each do |c| %>
+    <tr> <td><%= link_to c.full_name, contact_url(c) %></td> <td><%= c.last_contact.nil? ? "" : c.last_contact.strftime("%A, %b %d") %></td> </tr>
 <% end %>
 
 <% if @contacts.size > 1 -%>

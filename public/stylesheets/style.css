@@ -84,6 +84,17 @@ table tr.footer-row td
 	text-align: right;
 }
 
+table th a
+{
+	color: black;
+	text-decoration: none;
+}
+
+table th a:hover
+{
+	text-decoration: underline;
+}
+
 a
 {
 	color: blue;

@@ -1,5 +1,7 @@
 
 <script type='text/javascript'>
+var sort_key = 'name';
+
 function toggle_tag(tag)
 {
     tag = $(tag);
@@ -9,8 +11,13 @@ function toggle_tag(tag)
     else
         tag.addClassName('selected-tag');
 
+    reload_contacts();
+}
+
+function reload_contacts()
+{
     var selected = $('filter-tag-list').getElementsBySelector('.selected-tag a');
-    var params   = { };
+    var params   = { 'sort': sort_key };
     for (var i=0, tag; tag = selected[i]; i++)
         params['tags[' + i + ']'] = tag.text;
 
@@ -18,6 +25,12 @@ function toggle_tag(tag)
         method:     'get',
         parameters: params,
     });
+}
+
+function sort_by(key)
+{
+    sort_key = key;
+    reload_contacts();
 }
 </script>
 

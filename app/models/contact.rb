@@ -28,7 +28,7 @@ class Contact < ActiveRecord::Base
     
     def last_contact
         note = self.notes.sort.find { |note| note.contacted }
-        return note.nil? ? nil : note.timestamp.strftime("%A, %b %d")
+        return note.nil? ? nil : note.timestamp
     end
     
     def new_phone_number_attributes=(phone_number_attributes)

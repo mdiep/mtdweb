@@ -5,8 +5,8 @@ class ContactsController < ApplicationController
     
     def index
         @page_title = "Contacts"
-        @contacts   = Contact.find_all_by_user_id(current_user.id)
-        @tags       = Tag.find_all_by_user_id(current_user.id).sort { |a,b| a.name <=> b.name }
+        @contacts   = Contact.find_all_by_user_id(current_user.id).sort
+        @tags       = Tag.find_all_by_user_id(current_user.id).sort
     end
     
     def show
@@ -71,6 +71,12 @@ class ContactsController < ApplicationController
         else
             @contacts = Contact.find_all_by_user_id(current_user.id)
         end
+        
+        @contacts = case params[:sort]
+            when "last_contact" then @contacts.sort_by { |c| [c.last_contact.nil? ? Time.at(0) : c.last_contact, c.last_name] }
+            else                     @contacts.sort
+        end
+        
         render :partial => 'contacts'
     end
 end
