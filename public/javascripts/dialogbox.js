@@ -25,9 +25,10 @@ Object.extend(Dialog.Box.prototype, {
       this.overlay = document.createElement('div');
       this.overlay.id = 'dialog_overlay';
       Object.extend(this.overlay.style, {
-        position: 'absolute',
+        position: 'fixed',
         top: 0,
         left: 0,
+		bottom: 0,
         zIndex: 90,
         width: '100%',
         backgroundColor: '#000',
@@ -46,7 +47,6 @@ Object.extend(Dialog.Box.prototype, {
   },
 
   show: function() {
-    this.overlay.style.height = document.body.getHeight()+'px';
     this.moveDialogBox('out');
     this.overlay.onclick = this.hide.bind(this);
     this.selectBoxes('hide');
