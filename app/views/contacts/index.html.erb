@@ -17,7 +17,7 @@ function toggle_tag(tag)
 function reload_contacts()
 {
     var selected = $('filter-tag-list').getElementsBySelector('.selected-tag a');
-    var params   = { 'sort': sort_key };
+    var params   = { 'sort': sort_key, 'name': $F('live-search') };
     for (var i=0, tag; tag = selected[i]; i++)
         params['tags[' + i + ']'] = tag.text;
 
@@ -38,6 +38,12 @@ function sort_by(key)
     <a class='add-link' href='/contacts/new'>Add Contact</a>
 
     <h3>Filter Contacts</h3>
+
+    <div>
+        <h4>By Name</h4>
+        <input id='live-search' type='text' size='25'/>
+        <%= javascript_tag "new Form.Element.Observer('live-search', 1, reload_contacts);" %>
+    </div>
 
     <div>
         <h4>By Tag</h4>

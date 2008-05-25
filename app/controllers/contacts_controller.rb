@@ -72,6 +72,11 @@ class ContactsController < ApplicationController
             @contacts = Contact.find_all_by_user_id(current_user.id)
         end
         
+        if params[:name]
+            regexp = /#{Regexp.escape(params[:name])}/i;
+            @contacts = @contacts.find_all { |c| regexp.match(c.full_name) }
+        end
+        
         @contacts = case params[:sort]
             when "last_contact" then @contacts.sort_by { |c| [c.last_contact.nil? ? Time.at(0) : c.last_contact, c.last_name] }
             else                     @contacts.sort
