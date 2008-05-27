@@ -9,6 +9,10 @@ class Contact < ActiveRecord::Base
 
     after_update :save_phone_numbers, :save_email_addresses
     
+    validates_presence_of :first_name,  :on => :create, :message => "can't be blank"
+    validates_presence_of :last_name,   :on => :create, :message => "can't be blank"
+    
+    
     def <=>(right)
         retval = self.last_name <=> right.last_name
         return retval != 0 ? retval : self.first_names <=> right.first_names

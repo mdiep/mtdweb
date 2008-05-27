@@ -4,6 +4,7 @@
         <h2>New Contact</h2>
     </div>
 
+    <%= error_messages_for :contact %>
     <% form_for :contact, :url => contacts_path do |f| -%>
         <p style='float: left'>First Name    <%= f.text_field :first_name %>  </p>
         <p>Last Name     <%= f.text_field :last_name %>   </p>
