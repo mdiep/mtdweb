@@ -63,7 +63,7 @@ table
 	text-align: left;
 }
 
-table td, table th
+div#content table td, div#content table th
 {
 	border-bottom: solid #e8e8e8 1px;
 	padding: 0.25em;
@@ -265,6 +265,36 @@ div#content
 	padding: 0.5em 1em 0em;
 	margin: -1em -2em;
 	margin-bottom: 1em;
+}
+
+ul#content-tabs
+{
+	background: #f4f4f4;
+	border-bottom: solid 1px #ddd;
+	padding: 0;
+	margin: -1em -2em 1em;
+	height: 1.8em;
+	list-style: none;
+}
+
+ul#content-tabs li
+{
+	display: block;
+	padding: 0.25em 1em;
+	float: left;
+	font-size: 0.9em;
+}
+
+ul#content-tabs li:hover
+{
+	background-color: #ddd;
+}
+
+ul#content-tabs li a
+{
+	text-decoration: none;
+	color: #333;
+	font-weight: bold;
 }
 
 th#last-contact-column
@@ -501,33 +531,46 @@ ul.contact-list span.contact-loc
 
 
 
-/* @group gifts */
+/* @group pledges */
 
-div#gifts ul
+div#pledges table
 {
-	margin: 0;
-	padding: 0;
-	padding-left: 1em;
-	list-style: none;
+	margin-left: 0.5em;
 }
 
-div#gifts ul span.date
+div#pledges table td
 {
-    display: block;
-    float: left;
-    width: 6em;
-    margin-right: 1em;
-    text-align: right;
+	border: 0;
 }
 
-div#gifts ul li
+div#pledges table td.lifelink
 {
-	color: #333;
-	margin-bottom: 0.4em;
+	width: 16px;
+	padding: 0 2px;
+	vertical-align: center;
 }
-div#gifts ul li.current
+
+div#pledges table td.date-range
 {
-	color: black;
+	text-align: right;
+	padding-left: 0;
+	font-weight: bold;
+	white-space: nowrap;
+	width: 1em;
+}
+
+div#pledges table td.edit-link
+{
+	display: none;
+	background-color: #fafafa;
+	position: relative;
+	left: 1em;
+	padding-right: 1em;
+}
+
+div#pledges table tr:hover td.edit-link
+{
+	display: block;
 }
 
 /* @end */

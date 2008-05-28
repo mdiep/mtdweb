@@ -1,6 +1,7 @@
 
 <div id='column'>
     <%= link_to "Edit #{@contact.first_names}", { :action => 'edit', :id => @contact.id }, { :class => 'add-link' } %>
+    <%= link_to "Add New Pledge", { :controller => 'pledges', :action => 'new', :id => @contact.id }, { :class => 'add-link' } %>
 
     <div id='contact-info'>
         <h3>Contact Info</h3>
@@ -27,6 +28,20 @@
     <div id='details'>
         <h3>Details</h3>
         <p><%= @contact.details %></p>
+    </div>
+
+    <div id='pledges'>
+        <h3>Pledges</h3>
+        <table>
+<% pledges_sorted_by_date(@contact.pledges).each do |pledge| -%>
+            <tr>
+                <td class='date-range'><%= date_range_for_pledge(pledge) %></td>
+                <td class='lifelink'><%= image_tag('lifelink.gif', :title => 'Lifelink') if pledge.lifelink %></td>
+                <td><%= amount_for_pledge(pledge) %></td>
+                <td class='edit-link'><%= link_to 'edit', edit_pledge_url(pledge) %></td>
+            </tr>
+<% end %>
+        </table>
     </div>
 </div>
 
@@ -80,7 +95,7 @@ var edit_tags_list = $('edit-tags-list')
     <% end %>
     </div>
 
-<% if not @contact.notes.empty? %>
+<% if not @contact.notes.empty? -%>
 
     <ul id='contact-history'>
         <li id='contact-history-title'>Contact History</li>
@@ -91,13 +106,13 @@ var edit_tags_list = $('edit-tags-list')
                 <span class='date'><%= note.timestamp.strftime("%A, %b %d") %></span><%= note.timestamp.strftime(" at %I:%M %p") %>
             </div>
             <p><%= note.text %></p>
-			      <p><%= link_to 'edit', edit_note_url(note) %></p>
+                  <p><%= link_to 'edit', edit_note_url(note) %></p>
         </li>
     <% end %>
 
     </ul>
 
-<% end %>
+<% end -%>
 
 </div>
 

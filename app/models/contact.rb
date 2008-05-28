@@ -4,6 +4,7 @@ class Contact < ActiveRecord::Base
     has_many   :notes,           :dependent => :destroy
     has_many   :phone_numbers,   :dependent => :destroy
     has_many   :email_addresses, :dependent => :destroy
+    has_many   :pledges,         :dependent => :destroy
     has_many   :taggings,        :dependent => :destroy
     has_many   :tags, :through => :taggings
 

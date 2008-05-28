@@ -1,0 +1,19 @@
+
+<div id='content'>
+    <div class='content-title'>
+        <h2>Add Pledge from <%= @pledge.contact.full_name %></h2>
+    </div>
+
+    <%= error_messages_for :pledge %>
+    <div>
+    <% form_for @pledge, :url => pledges_url do |f| -%>
+        <%= f.hidden_field :contact_id, :value => @pledge.contact.id %>
+        <p>Amount <%= f.text_field :amount, :size => 20 %><%= f.select :frequency, Pledge.frequencies.invert.to_a.sort_by { |e| e[0] } %></p>
+        <p>Start Date <br/><%= f.date_select :start_date, :discard_day => true %></p>
+        <p>End Date   <br/><%= f.date_select :end_date,   :discard_day => true %></p>
+        <p><%= f.check_box :lifelink, :class => 'checkbox' %>Lifelink Partner</p>
+        <%= submit_tag 'Add Pledge' %>
+    <% end -%>
+    </div>
+</div>
+

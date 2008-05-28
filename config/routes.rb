@@ -3,8 +3,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resource :session, :controller => 'session'
 
-  map.resources :contacts, :member => { :tags => :post }, :collection => { :list => :get }
+  map.resources :contacts,  :member     => { :tags => :post },
+                            :collection => { :list => :get }
   map.resources :notes
+  map.resources :pledges
 
   # The priority is based upon order of creation: first created -> highest priority.
 
