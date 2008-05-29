@@ -8,10 +8,11 @@
     <div>
     <% form_for @pledge, :url => pledges_url do |f| -%>
         <%= f.hidden_field :contact_id, :value => @pledge.contact.id %>
-        <p>Amount <%= f.text_field :amount, :size => 20 %><%= f.select :frequency, Pledge.frequencies.invert.to_a.sort_by { |e| e[0] } %></p>
-        <p>Start Date <br/><%= f.date_select :start_date, :discard_day => true %></p>
-        <p>End Date   <br/><%= f.date_select :end_date,   :discard_day => true %></p>
-        <p><%= f.check_box :lifelink, :class => 'checkbox' %>Lifelink Partner</p>
+        <div><%= f.label :amount %> <%= f.text_field :amount, :size => 20 %></div>
+        <div><%= f.label :frequency, "Gift Frequency" %> <%= f.select :frequency, Pledge.frequencies.invert.to_a.sort_by { |e| e[0] } %></div>
+        <div><%= f.label :start_date, "Start Date" %> <%= f.date_select :start_date, :discard_day => true %></div>
+        <div><%= f.label :end_date, "End Date" %><%= f.date_select :end_date,   :discard_day => true %></div>
+        <div><label><%= f.check_box :lifelink, :class => 'checkbox' %>Lifelink Partner</label></div>
         <%= submit_tag 'Add Pledge' %>
     <% end -%>
     </div>

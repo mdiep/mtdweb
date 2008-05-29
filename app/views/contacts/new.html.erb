@@ -6,29 +6,29 @@
 
     <%= error_messages_for :contact %>
     <% form_for :contact, :url => contacts_path do |f| -%>
-        <p style='float: left'>First Name    <%= f.text_field :first_name %>  </p>
-        <p>Last Name     <%= f.text_field :last_name %>   </p>
-        <p>Spouse's Name <%= f.text_field :spouses_name %></p>
+        <div style='float: left'><%= f.label :first_name, "First Name" %> <%= f.text_field :first_name %>  </div>
+        <div><%= f.label :last_name,    "Last Name"     %> <%= f.text_field :last_name    %></div>
+        <div><%= f.label :spouses_name, "Spouse's Name" %> <%= f.text_field :spouses_name %></div>
 
-        <p>Details <%= f.text_area :details, 'cols' => 62, 'rows' => 8 %></p>
+        <div><%= f.label :details %> <%= f.text_area :details, 'cols' => 62, 'rows' => 8 %></div>
 
-        <p>
+        <div>
             Phone Numbers
             <div id='phone-numbers'>
                 <%= render :partial => 'phone_number', :collection => @contact.phone_numbers %>
             </div>
             <%= add_partial_link "Add Phone Number", 'phone-numbers', 'phone_number', PhoneNumber.new %>
-        </p>
+        </div>
 
-        <p>
+        <div>
             Email Addresses
             <div id='email-addresses'>
                 <%= render :partial => 'email_address', :collection => @contact.email_addresses %>
             </div>
             <%= add_partial_link "Add Email Address", 'email-addresses', 'email_address', EmailAddress.new %>
-        </p>
+        </div>
 
-        <p><%= submit_tag 'Add Contact' %></p>
+        <%= submit_tag 'Add Contact' %>
     <% end -%>
 
 </div>

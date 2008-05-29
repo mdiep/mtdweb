@@ -105,15 +105,18 @@ a img
 	border: 0;
 }
 
-p input,
-p textarea
+form > div
 {
-	display: block;
 	margin-bottom: 1em;
 	margin-right:  2em;
 }
 
-p input.checkbox
+label
+{
+	display: block;
+}
+
+form input.checkbox
 {
 	display: inline;
 	margin-right: 1em;
@@ -436,7 +439,7 @@ div#note-buttons
 	float: right;
 }
 
-div#note-buttons div#attempt
+div#note-buttons label#attempt
 {
 	display: inline;
 	font-size: 0.9em;
