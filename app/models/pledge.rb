@@ -2,8 +2,8 @@
 class Pledge < ActiveRecord::Base
     def Pledge.frequencies
         return {
-            'a' => 'annual',
-            's' => 'semi-annual',
+            'a' => 'annually',
+            's' => 'semi-annually',
             'q' => 'quarterly',
             'm' => 'monthly',
             'o' => 'one-time',

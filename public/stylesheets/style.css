@@ -36,6 +36,7 @@ span.date
 
 a.detail-link
 {
+	display: block;
 	font-size: 0.8em;
 }
 
@@ -114,6 +115,11 @@ form > div
 label
 {
 	display: block;
+}
+
+form select
+{
+	margin: 0.4em 0;
 }
 
 form input.checkbox
@@ -550,7 +556,7 @@ div#pledges table td.lifelink
 {
 	width: 16px;
 	padding: 0 2px;
-	vertical-align: center;
+	vertical-align: middle;
 }
 
 div#pledges table td.date-range

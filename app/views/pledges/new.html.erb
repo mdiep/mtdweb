@@ -8,13 +8,28 @@
     <div>
     <% form_for @pledge, :url => pledges_url do |f| -%>
         <%= f.hidden_field :contact_id, :value => @pledge.contact.id %>
-        <div><%= f.label :amount %> <%= f.text_field :amount, :size => 20 %></div>
+        <div style='float: left'><%= f.label :amount %> <%= f.text_field :amount, :size => 20 %></div>
         <div><%= f.label :frequency, "Gift Frequency" %> <%= f.select :frequency, Pledge.frequencies.invert.to_a.sort_by { |e| e[0] } %></div>
-        <div><%= f.label :start_date, "Start Date" %> <%= f.date_select :start_date, :discard_day => true %></div>
-        <div><%= f.label :end_date, "End Date" %><%= f.date_select :end_date,   :discard_day => true %></div>
+        <div id='start-date' style='float: left'><%= f.label :start_date, "Start Date" %> <%= f.date_select :start_date, :order => [:month, :year] %></div>
+        <div id='end-date'><%= f.label :end_date, "End Date" %><%= f.date_select :end_date, :order => [:month, :year], :include_blank => true %></div>
         <div><label><%= f.check_box :lifelink, :class => 'checkbox' %>Lifelink Partner</label></div>
         <%= submit_tag 'Add Pledge' %>
     <% end -%>
+    <%= javascript_tag "
+function check_pledge_type()
+{
+    if ($F('pledge_frequency') == 'o')
+    {
+        $('end-date').hide()
+        $('start-date').style.cssFloat = 'none';
+    }
+    else
+    {
+        $('end-date').show();
+        $('start-date').style.cssFloat = 'left';
+    }
+}
+Event.observe($('pledge_frequency'), 'change', check_pledge_type);" %>
     </div>
 </div>
 
