@@ -1,7 +1,7 @@
 # This controller handles the login/logout function of the site.  
 class SessionController < ApplicationController
     def new
-        @page_title = 'Login'
+        @page_title = 'Log In'
     end
 
   def create
@@ -15,6 +15,7 @@ class SessionController < ApplicationController
       flash[:notice] = "Logged in successfully"
     else
       flash[:notice] = "Incorrect username or password."
+      @page_title = 'Log In'
       render :action => 'new'
     end
   end
