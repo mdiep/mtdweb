@@ -30,7 +30,9 @@
 
         <div id='navbar'>
             <ul id='nav-links'>
+<% if logged_in? %>
                 <li><%= link_to 'Contacts', contacts_path %></li>
+<% end %>
             </ul>
         </div>
 
