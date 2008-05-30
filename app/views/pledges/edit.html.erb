@@ -7,7 +7,6 @@
     <%= error_messages_for :pledge %>
     <div>
     <% form_for @pledge do |f| -%>
-        <%= f.hidden_field :contact_id, :value => @pledge.contact.id %>
         <div style='float: left'><%= f.label :amount %> <%= f.text_field :amount, :size => 20 %></div>
         <div><%= f.label :frequency, "Gift Frequency" %> <%= f.select :frequency, Pledge.frequencies.invert.to_a.sort_by { |e| e[0] } %></div>
         <div id='start-date' style='float: left'><%= f.label :start_date, "Start Date" %> <%= f.date_select :start_date, :order => [:month, :year] %></div>

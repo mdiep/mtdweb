@@ -31,6 +31,12 @@ module PledgesHelper
     def pledges_sorted_by_date(pledges)
         # sort pledges by the date the ended and the date they started.
         # one-time gifts use the start date for both.
-        return pledges.sort_by { |p| [p.frequency == 'o' ? p.start_date : p.end_date, p.start_date] }.reverse
+        return pledges.sort_by { |p|
+            [ p.frequency == 'o' ? p.start_date :
+              p.end_date.nil?    ? Date.today   :
+              p.end_date,
+              p.start_date
+            ]
+        }.reverse
     end
 end
