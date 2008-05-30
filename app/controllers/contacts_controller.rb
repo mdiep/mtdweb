@@ -13,6 +13,11 @@ class ContactsController < ApplicationController
         @contact    = Contact.find(params[:id])
         @tags       = Tag.find_all_by_user_id(current_user.id)
         @page_title = @contact.full_name
+        
+        # Security: make sure this contact belongs to the user
+        if @contact.user != current_user
+            redirect_to '/', :status => 401
+        end
     end
     
     def new
@@ -40,12 +45,23 @@ class ContactsController < ApplicationController
     def edit
         @contact    = Contact.find(params[:id])
         @page_title = @contact.full_name
+        
+        # Security: make sure this contact belongs to the user
+        if @contact.user != current_user
+            redirect_to '/', :status => 401
+        end
     end
 
     def update
         @contact = Contact.find(params[:id])
         if params[:contact][:spouses_name] == ''
             params[:contact][:spouses_name] = nil
+        end
+        
+        # Security: make sure this contact belongs to the user
+        if @contact.user != current_user
+            render :text => '', :status => 401
+            return
         end
         
         if @contact.update_attributes(params[:contact])
@@ -57,6 +73,13 @@ class ContactsController < ApplicationController
     
     def tags
         @contact = Contact.find(params[:id])
+        
+        # Security: make sure this contact belongs to the user
+        if @contact.user != current_user
+            render :text => '', :status => 401
+            return
+        end
+        
         if params[:tags]
             @contact.tag_with(params[:tags].values)
         else
