@@ -350,11 +350,9 @@ div.contact-field
 	margin-bottom: 0.5em;
 }
 
-div.contact-field input,
-div.contact-field select
+div.contact-field img
 {
-	display: block;
-	float: left;
+	vertical-align: middle;
 }
 
 div.modal-dialog
