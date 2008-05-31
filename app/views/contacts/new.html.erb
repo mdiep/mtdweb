@@ -28,6 +28,15 @@
             <%= add_partial_link "Add Email Address", 'email-addresses', 'email_address', EmailAddress.new %>
         </div>
 
+        <div>
+            Street Addresses
+            <div id='street-addresses'>
+                <%= render :partial => 'address', :collection => @contact.addresses %>
+            </div>
+            <%= add_partial_link "Add Street Address", 'street-addresses', 'address', Address.new %>
+        </div>
+
+
         <%= submit_tag 'Add Contact' %>
     <% end -%>
 

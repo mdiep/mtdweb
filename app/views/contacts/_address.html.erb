@@ -1,0 +1,13 @@
+<% fields_for_address address do |f| -%>
+    <div class='contact-field'>
+        <%= f.text_field :street %>
+        <%= f.select :label, Address.labels.invert.to_a %>
+        <%= link_to_function image_tag('remove.png'), '$(this).up("div").remove()' %><br/>
+        <%= f.text_field :city,  :size => 12 %>
+        <%= f.text_field :state, :size => 10 %>
+        <%= f.text_field :zip,   :size => 5 %>
+    <% unless address.new_record? %>
+        <%= f.hidden_field :id %>
+    <% end %>
+    </div>
+<% end -%>

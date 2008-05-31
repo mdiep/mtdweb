@@ -9,7 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080526003440) do
+ActiveRecord::Schema.define(:version => 20080531034218) do
+
+  create_table "addresses", :force => true do |t|
+    t.integer "contact_id",               :null => false
+    t.string  "label",      :limit => 1,  :null => false
+    t.string  "street",     :limit => 25
+    t.string  "city",       :limit => 25
+    t.string  "state",      :limit => 20
+    t.string  "zip",        :limit => 15
+  end
 
   create_table "contacts", :force => true do |t|
     t.integer "user_id"

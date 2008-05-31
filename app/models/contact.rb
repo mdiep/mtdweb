@@ -4,11 +4,12 @@ class Contact < ActiveRecord::Base
     has_many   :notes,           :dependent => :destroy
     has_many   :phone_numbers,   :dependent => :destroy
     has_many   :email_addresses, :dependent => :destroy
+    has_many   :addresses,       :dependent => :destroy
     has_many   :pledges,         :dependent => :destroy
     has_many   :taggings,        :dependent => :destroy
     has_many   :tags, :through => :taggings
 
-    after_update :save_phone_numbers, :save_email_addresses
+    after_update :save_phone_numbers, :save_email_addresses, :save_addresses
     
     validates_presence_of :first_name,  :on => :create, :message => "can't be blank"
     validates_presence_of :last_name,   :on => :create, :message => "can't be blank"
@@ -83,6 +84,31 @@ class Contact < ActiveRecord::Base
     def save_email_addresses
         email_addresses.each do |ea|
             ea.save(false) # false = no validation
+        end
+    end
+    
+    def new_address_attributes=(address_attributes)
+        address_attributes.each do |attributes|
+            if not attributes[:street].blank?
+                addresses.build(attributes)
+            end
+        end
+    end
+    
+    def existing_address_attributes=(address_attributes)
+        addresses.reject(&:new_record?).each do |addr|
+            attributes = address_attributes[addr.id.to_s]
+            if attributes.nil? or attributes[:street].blank?
+                addresses.delete(addr)
+            else
+                addr.attributes = attributes
+            end
+        end
+    end
+
+    def save_addresses
+        addresses.each do |addr|
+            addr.save(false) # false = no validation
         end
     end
     

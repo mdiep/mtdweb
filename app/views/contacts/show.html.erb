@@ -23,6 +23,17 @@
     <% end %>
         </ul>
 <% end %>
+
+<% if not @contact.addresses.empty? -%>
+        <span class='contact-type'>Street</span>
+        <ul class='contact-list'>
+    <% @contact.addresses.each do |addr| -%>
+            <li> <%= addr.street %> <span class='contact-loc'><%= label_for_addr(addr) %></span><br/>
+                 <%= addr.city %>, <%= addr.state %> <%= addr.zip %> </li>
+    <% end -%>
+        </ul>
+<% end %>
+
     </div>
 
     <div id='details'>

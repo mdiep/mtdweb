@@ -25,6 +25,7 @@ class ContactsController < ApplicationController
         @contact    = Contact.new
         2.times { @contact.phone_numbers.build   }
         2.times { @contact.email_addresses.build }
+        1.times { @contact.addresses.build }
     end
     
     def create
