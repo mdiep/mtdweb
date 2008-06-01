@@ -573,11 +573,18 @@ div#pledges table td.edit-link
 	position: relative;
 	left: 1em;
 	padding-right: 1em;
+	width: 3.5em;
+	vertical-align: middle;
 }
 
 div#pledges table tr:hover td.edit-link
 {
 	display: block;
+}
+
+div#pledges table td.edit-link img
+{
+	margin-left: 3px;
 }
 
 /* @end */

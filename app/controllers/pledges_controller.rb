@@ -46,4 +46,19 @@ class PledgesController < ApplicationController
             render :action => 'edit'
         end
     end
+    
+    def destroy
+        @pledge = Pledge.find(params[:id])
+        
+        # Security: make sure this pledge belongs to the user
+        if @pledge.contact.user != current_user
+            redirect_to '/', :status => 401
+            return
+        end
+        
+        @pledge.destroy
+        render :update do |page|
+            page.visual_effect :fade, 'pledge-' + params[:id]
+        end
+    end
 end

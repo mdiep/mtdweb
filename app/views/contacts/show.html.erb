@@ -45,11 +45,12 @@
         <h3>Pledges</h3>
         <table>
 <% pledges_sorted_by_date(@contact.pledges).each do |pledge| -%>
-            <tr>
+            <tr id='pledge-<%= pledge.id %>'>
                 <td class='date-range'><%= date_range_for_pledge(pledge) %></td>
                 <td class='lifelink'><%= image_tag('lifelink.gif', :title => 'Lifelink') if pledge.lifelink %></td>
                 <td><%= amount_for_pledge(pledge) %></td>
-                <td class='edit-link'><%= link_to 'edit', edit_pledge_url(pledge) %></td>
+                <td class='edit-link'><%= link_to 'edit', edit_pledge_url(pledge) %>
+                                      <%= link_to_remote image_tag("trash.png"), :url => pledge_url(pledge), :method => :delete, :confirm => 'Are you sure you want to delete this pledge?'%></td>
             </tr>
 <% end %>
         </table>
