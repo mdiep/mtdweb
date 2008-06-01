@@ -36,4 +36,18 @@ class NotesController < ApplicationController
         end
     end
 
+    def destroy
+        @note = Note.find(params[:id])
+        
+        # Security: make sure this note belongs to this user
+        if @note.contact.user != current_user
+            redirect_to '/', :status => 401
+            return
+        end
+
+        @note.destroy
+        render :update do |page|
+            page.visual_effect :fade, 'note-' + params[:id]
+        end
+    end
 end

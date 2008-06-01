@@ -619,6 +619,17 @@ ul#contact-history li.unsuccessful
 {
 }
 
+ul#contact-history li div.buttons
+{
+	display: none;
+	float: right;
+}
+
+ul#contact-history li:hover div.buttons
+{
+	display: block;
+}
+
 ul#contact-history div.header
 {
 	font-size: 1.1em;
