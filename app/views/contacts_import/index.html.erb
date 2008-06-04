@@ -1,0 +1,10 @@
+<div id='content'>
+    <div class='content-title'>
+        <h2>Import Contacts</h2>
+    </div>
+
+    <% form_for :import, :html => { :multipart => true}, :url=>{:controller=>'contacts_import', :action=>'import'} do |f| %>
+        <div ><%= f.label :filename, "Filename" %> <%= f.file_field :filename %></div>
+        <p><%= submit_tag "Import" %></p>
+    <% end %>
+</div>

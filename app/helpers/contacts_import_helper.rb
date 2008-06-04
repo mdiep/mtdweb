@@ -1,0 +1,2 @@
+module ContactsImportHelper
+end
