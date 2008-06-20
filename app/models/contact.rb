@@ -1,6 +1,7 @@
 
 class Contact < ActiveRecord::Base
     belongs_to :user
+    belongs_to :organization
     has_many   :notes,           :dependent => :destroy
     has_many   :phone_numbers,   :dependent => :destroy
     has_many   :email_addresses, :dependent => :destroy
@@ -35,6 +36,18 @@ class Contact < ActiveRecord::Base
     def last_contact
         note = self.notes.sort.find { |note| note.contacted }
         return note.nil? ? nil : note.timestamp
+    end
+    
+    def organization_name=(name)
+        old = self.organization
+        new = name.blank? ? nil : Organization.find_or_create_by_name_and_user_id(name, self.user.id)
+        
+        return if old == new
+        
+        self.organization = new
+        self.save
+        
+        old.destroy if not old.nil? and old.contacts.size == 0
     end
     
     def new_phone_number_attributes=(phone_number_attributes)

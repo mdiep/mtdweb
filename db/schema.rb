@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080609142642) do
+ActiveRecord::Schema.define(:version => 20080618215416) do
 
   create_table "addresses", :force => true do |t|
     t.integer "contact_id",               :null => false
@@ -23,12 +23,13 @@ ActiveRecord::Schema.define(:version => 20080609142642) do
 
   create_table "contacts", :force => true do |t|
     t.integer "user_id"
-    t.string  "first_name",   :limit => 25, :null => false
-    t.string  "spouses_name", :limit => 25
-    t.string  "last_name",    :limit => 25, :null => false
+    t.string  "first_name",      :limit => 25, :null => false
+    t.string  "spouses_name",    :limit => 25
+    t.string  "last_name",       :limit => 25, :null => false
     t.integer "referred_by"
     t.text    "details"
     t.date    "created_on"
+    t.integer "organization_id"
   end
 
   create_table "email_addresses", :force => true do |t|
@@ -42,6 +43,11 @@ ActiveRecord::Schema.define(:version => 20080609142642) do
     t.text     "text"
     t.datetime "timestamp",                     :null => false
     t.boolean  "contacted",  :default => false, :null => false
+  end
+
+  create_table "organizations", :force => true do |t|
+    t.integer "user_id",               :null => false
+    t.string  "name",    :limit => 40, :null => false
   end
 
   create_table "phone_numbers", :force => true do |t|

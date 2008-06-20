@@ -1,7 +1,7 @@
 
 class ContactsController < ApplicationController
     before_filter :login_required
-    protect_from_forgery :except => ['tags', 'list']
+    protect_from_forgery :except => ['tags', 'list', 'auto_complete_for_organization_name']
     
     def index
         @page_title = "Contacts"
@@ -38,14 +38,16 @@ class ContactsController < ApplicationController
         
         if not @contact.errors.empty?
             render :action => 'new'
-       else
+        else
+            @contact.organization_name = params[:organization][:name]
             redirect_to :action => 'show', :id => @contact.id
         end
     end
 
     def edit
-        @contact    = Contact.find(params[:id])
-        @page_title = @contact.full_name
+        @contact      = Contact.find(params[:id])
+        @organization = @contact.organization
+        @page_title   = @contact.full_name
         
         # Security: make sure this contact belongs to the user
         if @contact.user != current_user
@@ -66,6 +68,7 @@ class ContactsController < ApplicationController
         end
         
         if @contact.update_attributes(params[:contact])
+            @contact.organization_name = params[:organization][:name]
             redirect_to @contact
         else
             render :action => 'edit'
@@ -101,11 +104,27 @@ class ContactsController < ApplicationController
             @contacts = @contacts.find_all { |c| regexp.match(c.full_name) }
         end
         
+        if params[:org]
+            regexp = /#{Regexp.escape(params[:org])}/i;
+            @contacts = @contacts.find_all { |c| regexp.match(c.organization.name) }
+        end
+        
         @contacts = case params[:sort]
             when "last_contact" then @contacts.sort_by { |c| [c.last_contact.nil? ? Time.at(0) : c.last_contact, c.last_name] }
             else                     @contacts.sort
         end
         
         render :partial => 'contacts'
+    end
+    
+    def auto_complete_for_organization_name
+        name  = params[:organization][:name]
+        @orgs = Organization.find(:all,
+            :conditions => [ "LOWER(name) LIKE ? AND user_id = ?", "%#{name.downcase}%", current_user.id ],
+            :order      => "name ASC",
+            :limit      => 10
+        )
+        
+        render :inline => "<%= auto_complete_result @orgs, 'name' %>"
     end
 end

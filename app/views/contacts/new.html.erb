@@ -10,6 +10,8 @@
         <div><%= f.label :last_name,    "Last Name"     %> <%= f.text_field :last_name    %></div>
         <div><%= f.label :spouses_name, "Spouse's Name" %> <%= f.text_field :spouses_name %></div>
 
+        <div> <label>Organization</label> <%= text_field_with_auto_complete :organization, :name %> </div>
+
         <div><%= f.label :details %> <%= f.text_area :details, 'cols' => 62, 'rows' => 8 %></div>
 
         <div>

@@ -90,6 +90,10 @@ var edit_tags_list = $('edit-tags-list')
     <div id='name' class='content-title'>
         <h1><%= @contact.full_name %></h1>
 
+    <% if not @contact.organization.nil? -%>
+        <div id='organization'>at <%= @contact.organization.name %></div>
+    <% end -%>
+
         <div id='contact-tag-list' class='tag-list'>
             <%= render :partial => 'tags' %>
         </div>
