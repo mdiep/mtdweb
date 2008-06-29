@@ -2,6 +2,7 @@
 class Contact < ActiveRecord::Base
     belongs_to :user
     belongs_to :organization
+    belongs_to :referred_by, :class_name => "Contact", :foreign_key => 'referred_by_id'
     has_many   :notes,           :dependent => :destroy
     has_many   :phone_numbers,   :dependent => :destroy
     has_many   :email_addresses, :dependent => :destroy

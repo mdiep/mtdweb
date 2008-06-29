@@ -1,7 +1,7 @@
 
 class ContactsController < ApplicationController
     before_filter :login_required
-    protect_from_forgery :except => ['tags', 'list', 'auto_complete_for_organization_name']
+    protect_from_forgery :except => ['tags', 'list', 'auto_complete_for_contact_referred_by', 'auto_complete_for_organization_name']
     
     def index
         @page_title = "Contacts"
@@ -22,6 +22,7 @@ class ContactsController < ApplicationController
     
     def new
         @page_title = "New Contact"
+        @contacts   = Contact.find_all_by_user_id(current_user.id).sort { |a,b| a.last_name <=> b.last_name }
         @contact    = Contact.new
         2.times { @contact.phone_numbers.build   }
         2.times { @contact.email_addresses.build }
@@ -45,6 +46,7 @@ class ContactsController < ApplicationController
     end
 
     def edit
+        @contacts     = Contact.find_all_by_user_id(current_user.id).sort { |a,b| a.last_name <=> b.last_name }
         @contact      = Contact.find(params[:id])
         @organization = @contact.organization
         @page_title   = @contact.full_name
@@ -107,6 +109,11 @@ class ContactsController < ApplicationController
         if params[:org]
             regexp = /#{Regexp.escape(params[:org])}/i;
             @contacts = @contacts.find_all { |c| regexp.match(c.organization.name) }
+        end
+        
+        if params[:referred_by]
+            regexp = /#{Regexp.escape(params[:referred_by])}/i
+            @contacts = @contacts.find_all { |c| regexp.match(c.referred_by.full_name) }
         end
         
         @contacts = case params[:sort]

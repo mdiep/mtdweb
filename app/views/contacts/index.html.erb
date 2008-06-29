@@ -50,6 +50,12 @@ function sort_by(key)
     </div>
 
     <div>
+        <h4>By Referrer</h4>
+        <%= text_field_with_auto_complete :contact, :referred_by, { :size => 25 }, :skip_style => true %>
+        <%= javascript_tag "new Form.Element.Observer('contact_referred_by', 1, reload_contacts);" %>
+    </div>
+
+    <div>
         <h4>By Organization</h4>
         <%= text_field_with_auto_complete :organization, :name, { :size => 25 }, :skip_style => true %>
         <%= javascript_tag "new Form.Element.Observer('organization_name', 1, reload_contacts);" %>

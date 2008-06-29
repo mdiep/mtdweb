@@ -94,6 +94,10 @@ var edit_tags_list = $('edit-tags-list')
         <div id='organization'>at <%= @contact.organization.name %></div>
     <% end -%>
 
+    <% if not @contact.referred_by.nil? -%>
+        <div id='referred-by'>referred by <%= link_to @contact.referred_by.full_name, @contact.referred_by %></div>
+    <% end -%>
+
         <div id='contact-tag-list' class='tag-list'>
             <%= render :partial => 'tags' %>
         </div>
