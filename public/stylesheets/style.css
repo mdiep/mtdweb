@@ -26,7 +26,7 @@ h2
 h4
 {
 	font-weight: bold;
-	margin-bottom: 0.5em;
+	margin-bottom: 0.3em;
 }
 
 span.date
@@ -247,7 +247,7 @@ div#column
 
 div#column > div
 {
-	margin-bottom: 2em;
+	margin-bottom: 1.25em;
 }
 
 div#column h3
