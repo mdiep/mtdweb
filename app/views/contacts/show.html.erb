@@ -87,12 +87,14 @@ var edit_tags_list = $('edit-tags-list')
 
 
 <div id='content'>
-    <div id='name' class='content-title'>
-        <h1><%= @contact.full_name %></h1>
+    <div class='content-title'>
+        <div id='name'>
+            <h1><%= @contact.full_name %></h1>
 
     <% if not @contact.organization.nil? -%>
-        <div id='organization'>at <%= @contact.organization.name %></div>
+            <div id='organization'>at <%= @contact.organization.name %></div>
     <% end -%>
+        </div>
 
     <% if not @contact.referred_by.nil? -%>
         <div id='referred-by'>referred by <%= link_to @contact.referred_by.full_name, @contact.referred_by %></div>

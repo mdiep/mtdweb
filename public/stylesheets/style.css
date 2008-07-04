@@ -320,10 +320,15 @@ th#last-contact-column
 
 div#name
 {
-	padding: 1em;
+	padding-top: 1em;
 }
 
-div#organization, div#referred-by
+div#name h1, div#organization
+{
+	display: inline;
+}
+
+div#referred-by
 {
 	font-size: 0.9em;
 	margin-bottom: 0.2em;
@@ -334,6 +339,7 @@ div#contact-tag-list
 {
 	font-size: 0.9em;
 	padding-left: 0.3em;
+	padding-bottom: 1em;
 }
 
 div#contact-tag-list a#edit-tags
