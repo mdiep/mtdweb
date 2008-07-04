@@ -5,6 +5,10 @@
         <th id='last-contact-column'><%= link_to_function "Last Contact", 'sort_by("last_contact")' %></th>
     </tr>
 
+<% if @contacts.size == 0 %>
+    <tr id='no-contacts-found-row'> <td colspan='2'>No Contacts Found</td> </tr>
+<% end %>
+
 <% @contacts.each do |c| %>
     <tr> <td><%= link_to c.full_name, contact_url(c) %></td> <td><%= c.last_contact.nil? ? "" : c.last_contact.strftime("%A, %b %d") %></td> </tr>
 <% end %>

@@ -76,7 +76,14 @@ table td
 	padding: 0.5em 0;
 }
 
-table tr.footer-row td
+div#content table tr#no-contacts-found-row td
+{
+	border-bottom: 0;
+	font-weight: bold;
+	text-align: center;
+}
+
+div#content table tr.footer-row td
 {
 	border-top: solid #e8e8e8 3px;
 	border-bottom: 0;
