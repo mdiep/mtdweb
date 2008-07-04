@@ -1,4 +1,10 @@
 
+<% if flash[:new_contact] -%>
+<div id='flash'>
+    Added <%= link_to flash[:new_contact].full_name, flash[:new_contact] %>.
+</div>
+<% end -%>
+
 <div id='content'>
     <div class='content-title'>
         <h2>New Contact</h2>
@@ -40,7 +46,8 @@
         </div>
 
 
-        <%= submit_tag 'Add Contact' %>
+        <%= submit_tag 'Save Contact' %>
+        <%= submit_tag 'Save Contact and Add Another' %>
     <% end -%>
 
 </div>

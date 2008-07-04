@@ -41,7 +41,12 @@ class ContactsController < ApplicationController
             render :action => 'new'
         else
             @contact.organization_name = params[:organization][:name]
-            redirect_to :action => 'show', :id => @contact.id
+            if params[:commit] == "Save Contact and Add Another"
+                flash[:new_contact] = @contact
+                redirect_to :action => 'new'
+            else
+                redirect_to :action => 'show', :id => @contact.id
+            end
         end
     end
 

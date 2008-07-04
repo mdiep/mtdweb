@@ -232,7 +232,15 @@ div#navbar div#search
 
 /* @end */
 
-
+div#flash
+{
+	background-color: #eee;
+	text-align: center;
+	font-weight: bold;
+	margin: 1em auto 0;
+	padding: 0.25em 0;
+	width: 500px;
+}
 
 /* column */
 
