@@ -18,9 +18,10 @@ function reload_contacts()
 {
     var selected = $('filter-tag-list').getElementsBySelector('.selected-tag a');
     var params   = {
-        'sort': sort_key,
-        'name': $F('live-search-name'),
-        'org':  $F('organization_name'),
+        'sort':     sort_key,
+        'name':     $F('live-search-name'),
+        'referrer': $F('contact_referred_by'),
+        'org':      $F('organization_name'),
     };
     for (var i=0, tag; tag = selected[i]; i++)
         params['tags[' + i + ']'] = tag.text;

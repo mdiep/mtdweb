@@ -101,19 +101,19 @@ class ContactsController < ApplicationController
             @contacts = Contact.find_all_by_user_id(current_user.id)
         end
         
-        if params[:name]
+        if not params[:name].empty?
             regexp = /#{Regexp.escape(params[:name])}/i;
             @contacts = @contacts.find_all { |c| regexp.match(c.full_name) }
         end
         
-        if params[:org]
+        if not params[:org].empty?
             regexp = /#{Regexp.escape(params[:org])}/i;
             @contacts = @contacts.find_all { |c| regexp.match(c.organization.name) }
         end
         
-        if params[:referred_by]
-            regexp = /#{Regexp.escape(params[:referred_by])}/i
-            @contacts = @contacts.find_all { |c| regexp.match(c.referred_by.full_name) }
+        if not params[:referrer].empty?
+            regexp = /#{Regexp.escape(params[:referrer])}/i
+            @contacts = @contacts.find_all { |c| not c.referred_by.nil? and regexp.match(c.referred_by.full_name) }
         end
         
         @contacts = case params[:sort]
@@ -122,6 +122,19 @@ class ContactsController < ApplicationController
         end
         
         render :partial => 'contacts'
+    end
+    
+    def auto_complete_for_contact_referred_by
+        name     = params[:contact][:referred_by]
+        contacts = Contact.find(:all,
+            :conditions => [ "(LOWER(first_name) LIKE ? OR LOWER(last_name) LIKE ?) AND user_id = ?",
+                             "%#{name.downcase}%", "%#{name.downcase}%", current_user.id ],
+            :order      => "first_name ASC",
+            :limit      => 10
+        )
+        
+        items = contacts.map { |c| "<li>#{c.full_name}</li>" }
+        render :inline => "<ul>#{items.join('')}</ul>"
     end
     
     def auto_complete_for_organization_name
