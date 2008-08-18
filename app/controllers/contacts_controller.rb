@@ -49,6 +49,20 @@ class ContactsController < ApplicationController
             end
         end
     end
+    
+    def destroy
+        @contact = Contact.find(params[:id])
+        
+        # Security: make sure this contact belongs to the user
+        if @contact.user != current_user
+            redirect_to '/', :status => 401
+        end
+        
+        @contact.destroy
+        render :update do |page|
+            page.visual_effect :fade, 'contact-' + params[:id]
+        end
+    end
 
     def edit
         @contacts     = Contact.find_all_by_user_id(current_user.id).sort { |a,b| a.last_name <=> b.last_name }

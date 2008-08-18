@@ -1,20 +1,29 @@
 
-<table>
+<table id='contacts-list'>
     <tr>
         <th><%= link_to_function "Name", 'sort_by("name")' %></th>
         <th id='last-contact-column'><%= link_to_function "Last Contact", 'sort_by("last_contact")' %></th>
+        <td class='delete'></th>
     </tr>
 
 <% if @contacts.size == 0 %>
-    <tr id='no-contacts-found-row'> <td colspan='2'>No Contacts Found</td> </tr>
+    <tr id='no-contacts-found-row'> <td colspan='3'>No Contacts Found</td> </tr>
 <% end %>
 
 <% @contacts.each do |c| %>
-    <tr> <td><%= link_to c.full_name, contact_url(c) %></td> <td><%= c.last_contact.nil? ? "" : c.last_contact.strftime("%A, %b %d") %></td> </tr>
+    <tr id='contact-<%= c.id %>'>
+        <td><%= link_to c.full_name, contact_url(c) %></td>
+        <td><%= c.last_contact.nil? ? "" : c.last_contact.strftime("%A, %b %d") %></td>
+        <td class='delete'>
+            <%= link_to_remote image_tag("trash.png"), :url     => contact_url(c),
+                                                       :method  => :delete,
+                                                       :confirm => "Are you sure you want to delete #{c.full_name}?" %>
+        </td>
+    </tr>
 <% end %>
 
 <% if @contacts.size > 1 -%>
-    <tr class='footer-row'> <td colspan='2'><%= @contacts.size %> Contacts</td> </tr>
+    <tr class='footer-row'> <td colspan='3'><%= @contacts.size %> Contacts</td> </tr>
 <% end -%>
 </table>
 
