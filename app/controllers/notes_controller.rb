@@ -11,25 +11,25 @@ class NotesController < ApplicationController
     end
     
     def edit
-        @page_title = "Edit Gift"
-        @gift       = Gift.find(params[:id])
+        @page_title = "Edit Note"
+        @note       = Note.find(params[:id])
         
         # Security: make sure this note belongs to this user
-        if @gift.contact.user != current_user
+        if @note.contact.user != current_user
             redirect_to '/', :status => 401
         end
     end
     
     def update
-        @gift = Gift.find(params[:id])
+        @note = Note.find(params[:id])
         
         # Security: make sure this note belongs to this user
-        if @gift.contact.user != current_user
+        if @note.contact.user != current_user
             redirect_to '/', :status => 401
         end
       
-        if @gift.update_attributes(params[:gift])
-            redirect_to @gift.contact
+        if @note.update_attributes(params[:note])
+            redirect_to @note.contact
         else
             flash[:error] = "Unable to update note"
             render :action => 'edit'
@@ -37,17 +37,17 @@ class NotesController < ApplicationController
     end
 
     def destroy
-        @gift = Gift.find(params[:id])
+        @note = Note.find(params[:id])
         
         # Security: make sure this note belongs to this user
-        if @gift.contact.user != current_user
+        if @note.contact.user != current_user
             redirect_to '/', :status => 401
             return
         end
 
-        @gift.destroy
+        @note.destroy
         render :update do |page|
-            page.visual_effect :fade, 'gift-' + params[:id]
+            page.visual_effect :fade, 'note-' + params[:id]
         end
     end
 end
