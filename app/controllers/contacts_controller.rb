@@ -1,7 +1,7 @@
 
 class ContactsController < ApplicationController
     before_filter :login_required
-    protect_from_forgery :except => ['tags', 'list', 'auto_complete_for_contact_referred_by', 'auto_complete_for_organization_name']
+    protect_from_forgery :except => ['tags', 'gifts', 'notes', 'list', 'auto_complete_for_contact_referred_by', 'auto_complete_for_organization_name']
     
     def index
         @page_title = "Contacts"
@@ -165,5 +165,29 @@ class ContactsController < ApplicationController
         )
         
         render :inline => "<%= auto_complete_result @orgs, 'name' %>"
+    end
+    
+    def notes
+        @contact = Contact.find(params[:id])
+        
+        # Security: make sure this contact belongs to the user
+        if @contact.user != current_user
+            render :text => '', :status => 401
+            return
+        end
+        
+        render :partial => 'notes'
+    end
+    
+    def gifts
+        @contact = Contact.find(params[:id])
+        
+        # Security: make sure this contact belongs to the user
+        if @contact.user != current_user
+            render :text => '', :status => 401
+            return
+        end
+        
+        render :partial => 'gifts'
     end
 end

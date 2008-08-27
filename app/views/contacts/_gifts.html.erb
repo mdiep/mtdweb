@@ -1,0 +1,27 @@
+
+    <div id='gift-form'>
+    <% remote_form_for :gift, :url => gifts_path do |f| -%>
+        <%= f.hidden_field :contact_id, :value => @contact.id %>
+        <%= f.label :date %> <%= f.date_select :date %>
+        <%= f.label :check_number %> <%= f.text_field :check_number %>
+        <%= f.label :amount %> <%= f.text_field :amount %>
+        <%= f.label :memo %> <%= f.text_field :memo %>
+        <br/><%= submit_tag 'Add Gift' %>
+    <% end -%>
+    </div>
+
+<% if not @contact.gifts.empty? -%>
+    <table id='gifts'>
+        <tr> <th>Date</th> <th>Check #</th> <th>Amount</th> <th>Memo</th> </tr>
+
+        <% @contact.gifts.sort.each do |gift| -%>
+            <tr>
+                <td><%= gift.date %></td>
+                <td><%= gift.check_number %></td>
+                <td>$<%= gift.amount %></td>
+                <td><%= gift.memo %></td>
+            </tr>
+        <% end -%>
+    </table>
+<% end -%>
+
